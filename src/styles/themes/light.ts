@@ -1,18 +1,18 @@
 import { title } from "process";
 
 export default {
-  title: "light",
+  title: "dark",
   colors: {
-    primary: "#DCDCDC",
-    secondary: "#fff",
-    tertiary: "#f5f5f5",
+    primary: "#1b1f38",
+    secondary: "#252a48",
+    tertiary: "#313862",
 
-    white: "#000",
-    black: "#fff",
+    white: "#fff",
+    black: "#000",
     gray: "#bfbfbf",
 
-    success: "#03bb85",
-    info: "#3b5998",
-    warning: "#ff6961",
+    success: "#4e41f0",
+    info: "#f7931b",
+    warning: "#e44c4e",
   },
 };

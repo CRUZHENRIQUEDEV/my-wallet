@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
-
-import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
-import dark from "./styles/themes/dark";
-import light from "./styles/themes/light";
+import darkTheme from "./styles/themes/dark";
+import lightTheme from "./styles/themes/light";
 
-const App = () => {
+const App: React.FC = () => {
+  const [theme, setTheme] = useState(darkTheme);
+
+  const toggleTheme = () => {
+    setTheme(theme.title === "dark" ? lightTheme : darkTheme);
+  };
+
   return (
-    <ThemeProvider theme={dark}>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Layout />
+      <Layout>
+        <div>
+          <button onClick={toggleTheme}>Toggle Theme</button>
+          Your Content Here
+        </div>
+      </Layout>
     </ThemeProvider>
   );
 };

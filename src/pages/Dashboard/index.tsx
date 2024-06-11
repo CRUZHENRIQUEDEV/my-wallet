@@ -1,16 +1,13 @@
-import React from "react"; // import React from "react";
+import React from "react";
+import { Container } from "./styles";
+import ContentHeader from "../../components/ContentHeader";
 
-// Dashboard é o nome da pagina importada;
-//React.FC tipo da pagina;
-//= () => { aponta para uma função;
-//Sempre retorna um único elemento;
 const Dashboard: React.FC = () => {
   return (
-    <div>
+    <Container>
+      <ContentHeader />
       <h1>Dashboard</h1>
-      <p>Teste</p>
-    </div>
-    // Não pode ter outro h1 fora da div <h1>Dashboard</h1>;
+    </Container>
   );
 };
 

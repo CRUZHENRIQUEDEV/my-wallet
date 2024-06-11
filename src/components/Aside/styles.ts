@@ -29,11 +29,11 @@ export const MenuContainer = styled.nav`
   flex-direction: column;
   margin-top: 50px;
   margin: 7px 0;
-  color: ${(props) => props.theme.colors.info};
+  color: ${(props) => props.theme.colors.white};
 `;
 
 export const MenuItemLink = styled.a`
-  color: ${(props) => props.theme.colors.info};
+  color: ${(props) => props.theme.colors.white};
   text-decoration: none;
 
   margin: 7px 0;
