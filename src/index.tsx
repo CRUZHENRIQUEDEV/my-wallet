@@ -1,14 +1,11 @@
 import React from "react"; // import React from "react";
-import ReactDOM from "react-dom/client"; // import ReactDOM from "react-dom";
-import "./index.css"; // import "./index.css";
-import Dashboard from "./pages/Dashboard"; // importa a página e injeta no componente Dashboard
+import ReactDOM from "react-dom"; // import ReactDOM from "react-dom";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+import App from "./App"; // import App from "./App"
 
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <Dashboard />
-  </React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
 );

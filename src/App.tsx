@@ -1,24 +1,19 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./styles/GlobalStyles";
 
-function App() {
+import Dashboard from "./pages/Dashboard";
+import Layout from "./components/Layout";
+import dark from "./styles/themes/dark";
+import light from "./styles/themes/light";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>React initial Test</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={dark}>
+      <GlobalStyles />
+      <Layout />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
