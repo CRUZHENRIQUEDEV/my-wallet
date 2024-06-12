@@ -4,6 +4,9 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Layout from "./components/Layout";
 import darkTheme from "./styles/themes/dark";
 import lightTheme from "./styles/themes/light";
+import Dashboard from "./pages/Dashboard";
+import List from "./pages/Lists";
+import HistoryFinanceCard from "./components/HistoryFinanceCard";
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState(darkTheme);
@@ -16,10 +19,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Layout>
-        <div>
-          <button onClick={toggleTheme}>Toggle Theme</button>
-          Your Content Here
-        </div>
+        <List />
       </Layout>
     </ThemeProvider>
   );
