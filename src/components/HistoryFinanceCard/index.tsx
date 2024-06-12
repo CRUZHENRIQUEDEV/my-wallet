@@ -1,5 +1,5 @@
-import React from "react";
-import { Container } from "./styles";
+//HiscroFinanceCard index.tsx import React from "react";
+import { Container,Tag } from "./styles";
 import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
 
@@ -14,7 +14,14 @@ const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = ({
     cardColor, tagColor, title, subTitle, amount
 }) => {
   return (
-    <Container>
+    <Container color = {cardColor}>
+        <Tag color = {tagColor}/>
+        <div>
+            <span>{title}</span>
+            <small>{subTitle}</small>
+        </div>
+        <h3>{amount}</h3>
+
     </Container>
   );
 };
