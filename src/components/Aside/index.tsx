@@ -14,6 +14,7 @@ import {
   Title,
   MenuContainer,
   MenuItemLink,
+  MenuItem,
 } from "./styles";
 import logImg from "../../assets/logo.svg";
 
@@ -26,17 +27,25 @@ const Aside: React.FC = () => {
       </Header>
 
       <MenuContainer>
-        <MdDashboard />
-        <MenuItemLink href="/dashboard">Dashboard</MenuItemLink>
+        <MenuItem>
+          <MdDashboard />
+          <MenuItemLink href="/dashboard">Dashboard</MenuItemLink>
+        </MenuItem>
 
-        <MdArrowDownward />
-        <MenuItemLink href="/list/entry-balance">Entradas</MenuItemLink>
+        <MenuItem>
+          <MdArrowDownward />
+          <MenuItemLink href="/list/entry-balance">Entradas</MenuItemLink>
+        </MenuItem>
 
-        <MdArrowUpward />
-        <MenuItemLink href="/list/exit-balance">Saídas</MenuItemLink>
+        <MenuItem>
+          <MdArrowUpward />
+          <MenuItemLink href="/list/exit-balance">Saídas</MenuItemLink>
+        </MenuItem>
 
-        <MdExitToApp />
-        <MenuItemLink href="#">Sair</MenuItemLink>
+        <MenuItem>
+          <MdExitToApp />
+          <MenuItemLink href="#">Sair</MenuItemLink>
+        </MenuItem>
       </MenuContainer>
     </Container>
   );

@@ -28,24 +28,26 @@ export const MenuContainer = styled.nav`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+`;
+
+export const MenuItem = styled.div`
+  display: flex;
+  align-items: center;
   margin: 7px 0;
   color: ${(props) => props.theme.colors.white};
+
+  > svg {
+    font-size: 20px;
+    margin-right: 5px;
+  }
 `;
 
 export const MenuItemLink = styled.a`
   color: ${(props) => props.theme.colors.white};
   text-decoration: none;
 
-  margin: 7px 0;
-  display: flex;
-  align-items: center;
-
   transition: opacity 0.3s;
   &:hover {
     opacity: 0.7;
-  }
-  > svg {
-    font-size: 20px;
-    margin-right: 5px;
   }
 `;

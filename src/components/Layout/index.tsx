@@ -13,9 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <Grid>
       <MainHeader />
       <Aside />
-      <Content>
-        {children}
-      </Content>
+      <Content>{children}</Content>
     </Grid>
   );
 };
