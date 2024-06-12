@@ -4,17 +4,16 @@ import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
 
 interface IHistoryFinanceCardProps {
-    cardColor: string;
     tagColor: string;
     title: string;
     subTitle: string;
     amount: string;
     }
 const HistoryFinanceCard: React.FC<IHistoryFinanceCardProps> = ({
-    cardColor, tagColor, title, subTitle, amount
+     tagColor, title, subTitle, amount
 }) => {
   return (
-    <Container color = {cardColor}>
+    <Container>
         <Tag color = {tagColor}/>
         <div>
             <span>{title}</span>

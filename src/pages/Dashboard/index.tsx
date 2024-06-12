@@ -8,6 +8,7 @@ const Dashboard: React.FC = () => {
     { value: "Lucas", label: "Lucas" },
     { value: "Ana", label: "Ana" },
     { value: "Maria", label: "Maria" },
+    { value: "João", label: "João" },
   ];
 
   return (
