@@ -1,18 +1,15 @@
-import { title } from "process";
-
+// light.ts
 export default {
-  title: "dark",
+  title: "light",
   colors: {
-    primary: "#1b1f38",
-    secondary: "#252a48",
-    tertiary: "#313862",
-
-    white: "#fff",
-    black: "#000",
-    gray: "#bfbfbf",
-
-    success: "#4e41f0",
-    info: "#f7931b",
-    warning: "#e44c4e",
+    primary: "#DCDCDC",
+    secondary: "#FFF",
+    tertiary: "#F5F5F5",
+    white: "#000",
+    black: "#FFF",
+    gray: "#BFBFBF",
+    success: "#03BB85",
+    info: "#3B5998",
+    warning: "#FF6961",
   },
 };

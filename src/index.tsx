@@ -1,11 +1,16 @@
-import React from "react"; // import React from "react";
-import ReactDOM from "react-dom"; // import ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "./hooks/themes"; // Certifique-se de que o caminho está correto
 
-import App from "./App"; // import App from "./App"
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container!);
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+root.render(
+  <ThemeProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ThemeProvider>
 );

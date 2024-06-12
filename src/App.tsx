@@ -1,25 +1,18 @@
-import React, { useState } from "react";
-import { ThemeProvider } from "styled-components";
+import React from "react";
 import GlobalStyles from "./styles/GlobalStyles";
 import Layout from "./components/Layout";
-import darkTheme from "./styles/themes/dark";
-import lightTheme from "./styles/themes/light";
-import Dashboard from "./pages/Dashboard";
-import List from "./pages/Lists";
-import HistoryFinanceCard from "./components/HistoryFinanceCard";
+import AppRoutes from "./routes/app.routes";
+import { ThemeProvider } from "styled-components";
+import { useTheme } from "./hooks/themes";
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState(darkTheme);
-
-  const toggleTheme = () => {
-    setTheme(theme.title === "dark" ? lightTheme : darkTheme);
-  };
+  const { theme } = useTheme(); // Usando o hook para obter o tema atual
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Layout>
-        <List />
+        <AppRoutes />
       </Layout>
     </ThemeProvider>
   );
