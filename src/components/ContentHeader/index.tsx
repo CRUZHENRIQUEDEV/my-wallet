@@ -1,13 +1,13 @@
 import React from "react";
 import { Container, TitleContainer, Controllers } from "./styles";
 
-interface IContentHeaderProps {
+interface IContentleHeaderProps {
   title: string;
   lineColor: string;
   children: React.ReactNode;
 }
 
-const ContentHeader: React.FC<IContentHeaderProps> = ({
+const ContentHeader: React.FC<IContentleHeaderProps> = ({
   title,
   lineColor,
   children,
@@ -15,7 +15,7 @@ const ContentHeader: React.FC<IContentHeaderProps> = ({
   return (
     <Container>
       <TitleContainer $lineColor={lineColor}>
-        <h4>{title}</h4>
+        <h1>{title}</h1>
       </TitleContainer>
       <Controllers>{children}</Controllers>
     </Container>
