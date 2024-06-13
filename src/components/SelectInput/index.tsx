@@ -7,15 +7,22 @@ interface Option {
 }
 
 interface SelectInputProps {
-  options: Option[];
+  options: {
+    value: string | number;
+    label: string | number;
+  }[];
+  onChange(event: React.ChangeEvent<HTMLSelectElement>): void | undefined;
+  defaultValue?: string;
 }
 
-const SelectInput: React.FC<SelectInputProps> = ({ options }) => {
+const SelectInput: React.FC<SelectInputProps> = ({ options, onChange }) => {
   return (
     <Container>
-      <select>
+      <select onChange = {onChange}>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>{option.label}</option>
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
         ))}
       </select>
     </Container>

@@ -36,7 +36,9 @@ export const FilterButton = styled.button`
     display: block;
     width: 55px;
     margin: 0 auto;
-    border-bottom: 10px solid ${(props) => props.theme.colors.warning};
+    border-bottom: 10px;
+    border-color: #df9f4b;
+    border-style: solid;
   }
 
   &.tag-filter-eventual::after {
