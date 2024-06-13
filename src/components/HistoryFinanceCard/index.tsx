@@ -1,7 +1,5 @@
 //HiscroFinanceCard index.tsx import React from "react";
 import { Container,Tag } from "./styles";
-import ContentHeader from "../../components/ContentHeader";
-import SelectInput from "../../components/SelectInput";
 
 interface IHistoryFinanceCardProps {
     tagColor: string;

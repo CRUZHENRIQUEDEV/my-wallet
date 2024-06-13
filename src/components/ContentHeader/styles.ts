@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface IContainerProps {
-  lineColor: string;
+  $lineColor: string;
 }
 export const Container = styled.div`
   width: 100%;
@@ -18,7 +18,7 @@ export const TitleContainer = styled.h4<IContainerProps>`
       content: "";
       display: block;
       width: 50px;
-      border-bottom: 8px solid ${(props) => props.lineColor};
+      border-bottom: 8px solid ${(props) => props.$lineColor};
     }
   }
 `;
