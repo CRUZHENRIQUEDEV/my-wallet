@@ -26,6 +26,7 @@ import {
   Cell,
 } from "recharts";
 import WalletBox from "../../components/WalletBox";
+// import MessageBox  from "../../components/MessageBox";
 
 interface IData {
   id: string;
