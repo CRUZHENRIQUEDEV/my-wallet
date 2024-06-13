@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "../pages/Dashboard"; // Certifique-se de que este caminho está correto
-import List from "../pages/Lists"; // Certifique-se de que este caminho está correto
+import Dashboard from "../pages/Dashboard"; // Ajuste o caminho conforme necessário
+import List from "../pages/Lists"; // Ajuste o caminho conforme necessário
 
 const AppRoutes: React.FC = () => (
   <Routes>

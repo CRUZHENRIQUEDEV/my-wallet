@@ -1,12 +1,10 @@
 import React from "react";
-
 import {
   MdArrowDownward,
   MdArrowUpward,
   MdDashboard,
   MdExitToApp,
 } from "react-icons/md";
-
 import {
   Container,
   Header,
@@ -14,7 +12,6 @@ import {
   Title,
   MenuContainer,
   MenuItemLink,
-  MenuItem,
 } from "./styles";
 import logImg from "../../assets/logo.svg";
 
@@ -27,25 +24,25 @@ const Aside: React.FC = () => {
       </Header>
 
       <MenuContainer>
-        <MenuItem>
+        <MenuItemLink href="/dashboard">
           <MdDashboard />
-          <MenuItemLink href="/dashboard">Dashboard</MenuItemLink>
-        </MenuItem>
+          Dashboard
+        </MenuItemLink>
 
-        <MenuItem>
+        <MenuItemLink href="/list/entry-balance">
           <MdArrowDownward />
-          <MenuItemLink href="/list/entry-balance">Entradas</MenuItemLink>
-        </MenuItem>
+          Entradas
+        </MenuItemLink>
 
-        <MenuItem>
+        <MenuItemLink href="/list/exit-balance">
           <MdArrowUpward />
-          <MenuItemLink href="/list/exit-balance">Saídas</MenuItemLink>
-        </MenuItem>
+          Saídas
+        </MenuItemLink>
 
-        <MenuItem>
+        <MenuItemLink href="#">
           <MdExitToApp />
-          <MenuItemLink href="#">Sair</MenuItemLink>
-        </MenuItem>
+          Sair
+        </MenuItemLink>
       </MenuContainer>
     </Container>
   );
