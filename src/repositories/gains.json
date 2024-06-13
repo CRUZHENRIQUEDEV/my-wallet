@@ -1,0 +1,16 @@
+[
+  {
+    "description": "freela",
+    "amount": "150.55",
+    "type": "entrada",
+    "frequency": "recorrente",
+    "date": "2020-01-10"
+  },
+  {
+    "description": "salario",
+    "amount": "75.55",
+    "type": "entrada",
+    "frequency": "recorrente",
+    "date": "2020-01-15"
+  }
+]
