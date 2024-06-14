@@ -1,11 +1,10 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Container, Content } from "./styles";
 import CountUp from "react-countup";
 
 import dollarImage from "../../assets/dollar.svg";
 import arrowUpImage from "../../assets/arrow-up.svg";
 import arrowDownImage from "../../assets/arrow-down.svg";
-import { IconType } from "react-icons";
 
 interface IWalletBoxProps {
   title: string;

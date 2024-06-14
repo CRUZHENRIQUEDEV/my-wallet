@@ -1,8 +1,6 @@
 import React, { ReactNode } from "react";
 import { Container } from "./styles";
 
-;
-
 interface IMessageBoxProps {
   title: string;
   description: string;
@@ -18,10 +16,12 @@ const MessageBox: React.FC<IMessageBoxProps> = ({
 }) => {
   return (
     <Container>
-      <h1>
-        {title}
-        <img src={icon} alt={title} />
-      </h1>
+      <header>
+        <h1>
+          {title}
+          <img src={icon} alt={title} />
+        </h1>
+      </header>
       <p>{description}</p>
       <footer>
         <span>{footerText}</span>

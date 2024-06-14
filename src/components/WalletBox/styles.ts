@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 interface IContainerProps {
   color: string;
-  fontSize?: number;
 }
 
 export const Container = styled.div<IContainerProps>`
@@ -40,7 +39,7 @@ export const Container = styled.div<IContainerProps>`
   }
 
   &:hover {
-    opacity: 0.7s;
+    opacity: 0.7;
     transform: scale(1.03);
   }
 `;
@@ -51,29 +50,4 @@ export const Content = styled.div`
   justify-content: left;
   height: 70%;
   font-size: 25px;
-`;
-
-export const Filters = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
-
-export const FilterButton = styled.button`
-  background: none;
-  color: ${(props) => props.theme.colors.white};
-  font-size: 18px;
-  margin: 0 10px;
-  opacity: 0.4;
-  transition: opacity 0.3s;
-
-  &:hover {
-    opacity: 0.7;
-  }
-
-  &.tag-actived {
-    opacity: 1;
-    border-bottom: 2px solid ${(props) => props.theme.colors.warning};
-  }
 `;

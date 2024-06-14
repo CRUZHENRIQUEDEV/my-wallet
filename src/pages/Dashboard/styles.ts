@@ -6,7 +6,7 @@ export const Container = styled.div`
   color: ${(props) => props.theme.colors.white};
 `;
 
-export const ContentWalletBox = styled.div`
+export const FirstLine = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -37,3 +37,16 @@ export const FilterButton = styled.button`
   }
 `;
 
+export const SecondLine = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const ThirdLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+`;
