@@ -9,6 +9,10 @@ import expenses from "../../repositories/expenses";
 import gains from "../../repositories/gains";
 import formatCurrency from "../../utils/formatCurrency";
 import formatDate from "../../utils/formatDate";
+import MessageBox from "../../components/MessageBox";
+
+import happyImg from "../../assets/happy.svg";
+import sadImg from "../../assets/sad.svg";
 
 import {
   BarChart,
@@ -192,6 +196,12 @@ const Dashboard: React.FC = () => {
           color="#f44336"
         />
       </ContentWalletBox>
+      <MessageBox
+        title="Muito bem!"
+        description="Sua carteira está positiva"
+        footerText="Continue assim. Considere investir o seu saldo."
+        icon={sadImg}
+      />
     </Container>
   );
 };
