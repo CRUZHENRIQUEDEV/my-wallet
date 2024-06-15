@@ -50,3 +50,9 @@ export const ThirdLine = styled.div`
   margin-top: 20px;
   padding-bottom: 20px;
 `;
+
+export const FourthLine = styled.div`
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+`;

@@ -5,7 +5,7 @@ interface IContainerProps {
 }
 
 export const Container = styled.div<IContainerProps>`
-  width: 32%;
+  width: 31.3%;
   height: 150px;
 
   margin: 10px 0;
