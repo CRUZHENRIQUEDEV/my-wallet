@@ -15,6 +15,11 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 30px 20px;
+
+  &:hover {
+    opacity: 0.7s;
+    transform: scale(1.03);
+  }
 `;
 
 export const SideLeft = styled.div`

@@ -2,8 +2,7 @@ import Styled from "styled-components";
 
 export const Container = Styled.div`
   width: 100%;
-  height: 260px;
-  margin: 10px 0;
+  height: 240px;
   background-color: ${(props) => props.theme.colors.tertiary};
   color: ${(props) => props.theme.colors.white};
   border-radius: 7px;
@@ -11,6 +10,10 @@ export const Container = Styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 30px 20px;
+
+  &:hover {
+    opacity: 0.7s;
+    transform: scale(1.03);
 `;
 
 export const FirstLine = Styled.div`

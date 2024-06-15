@@ -46,7 +46,7 @@ export const SecondLine = styled.div`
 
 export const ThirdLine = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
 `;

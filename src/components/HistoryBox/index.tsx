@@ -10,6 +10,7 @@ import {
   Legend,
 } from "recharts";
 
+import formatCurrency from "../../utils/formatCurrency";
 interface IHistoryBoxProps {
   data: {
     month: string;
@@ -31,11 +32,13 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({
 
   return (
     <Container>
-      <h2>Histórico de saldo</h2>
+      <h2>Histórico de Saldo</h2>
       <ResponsiveContainer width="100%" height={160}>
         <LineChart data={data}>
           <XAxis dataKey="month" stroke="#cecece" />
-          <Tooltip formatter={formatTooltipValue} />
+          <Tooltip
+            formatter={(value: number) => formatCurrency(Number(value))}
+          />
           <CartesianGrid strokeDasharray="3 3" stroke="#cecece" />
           <Line
             type="monotone"

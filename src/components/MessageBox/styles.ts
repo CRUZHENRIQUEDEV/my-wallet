@@ -23,4 +23,8 @@ export const Container = styled.div`
   > header p {
     font-size: 18px;
   }
+
+  &:hover {
+    opacity: 0.7s;
+    transform: scale(1.03);
 `;
