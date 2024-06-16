@@ -28,6 +28,7 @@ import sadImg from "../../assets/sad.svg";
 
 import WalletBox from "../../components/WalletBox";
 
+// Interface para definir o tipo de dados que serão usados no Dashboard
 interface IData {
   id: string;
   description: string;
@@ -37,21 +38,33 @@ interface IData {
   tagColor: string;
 }
 
+// Componente principal do Dashboard
 const Dashboard: React.FC = () => {
+  // Estado para o mês selecionado
   const [monthSelected, setMonthSelected] = useState<string>(
     String(new Date().getMonth() + 1).padStart(2, "0")
   );
+
+  // Estado para o ano selecionado
   const [yearSelected, setYearSelected] = useState<string>(
     String(new Date().getFullYear())
   );
+
+  // Estado para os dados filtrados
   const [data, setData] = useState<IData[]>([]);
+
+  // Obtém o tipo de dados (gains ou expenses) dos parâmetros da URL
   const { type } = useParams<{ type: string }>();
+
+  // Estado para o filtro de frequência (recorrente ou eventual)
   const [frequencyFilter, setFrequencyFilter] = useState<string | null>(null);
 
+  // Define se os dados exibidos serão ganhos ou despesas
   const listData = useMemo(() => {
     return type === "entry-balance" ? gains : expenses;
   }, [type]);
 
+  // Lista de meses abreviados
   const months = useMemo(() => {
     return [
       { value: "01", label: "Jan" },
@@ -69,9 +82,11 @@ const Dashboard: React.FC = () => {
     ];
   }, []);
 
+  // Lista de anos únicos, ordenados em ordem crescente
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
 
+    // Obtém todos os anos únicos de ganhos e despesas
     [...expenses, ...gains].forEach((item) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
@@ -81,6 +96,10 @@ const Dashboard: React.FC = () => {
       }
     });
 
+    // Ordena os anos em ordem crescente
+    uniqueYears.sort((a, b) => a - b);
+
+    // Mapeia os anos para o formato esperado pelo SelectInput
     return uniqueYears.map((year) => {
       return {
         value: String(year),
@@ -89,7 +108,7 @@ const Dashboard: React.FC = () => {
     });
   }, [listData]);
 
-  // Calculate the total of entries and exits and the balance
+  // Calcula o total de despesas para o mês e ano selecionados
   const totalExpenses = useMemo(() => {
     let total: number = 0;
 
@@ -110,6 +129,7 @@ const Dashboard: React.FC = () => {
     return total;
   }, [monthSelected, yearSelected]);
 
+  // Calcula o total de ganhos para o mês e ano selecionados
   const totalGains = useMemo(() => {
     let total: number = 0;
 
@@ -130,10 +150,12 @@ const Dashboard: React.FC = () => {
     return total;
   }, [monthSelected, yearSelected]);
 
+  // Calcula o saldo total (ganhos - despesas)
   const totalBalance = useMemo(() => {
     return totalGains - totalExpenses;
   }, [totalGains, totalExpenses]);
 
+  // Calcula a relação entre despesas e ganhos
   const relationExpensesVersusGains = useMemo(() => {
     const total = totalGains + totalExpenses;
 
@@ -160,7 +182,7 @@ const Dashboard: React.FC = () => {
     ];
   }, [totalGains, totalExpenses]);
 
-  // Calculando dados para o HistoryBox
+  // Calcula os dados para o HistoryBox
   const historyData = useMemo(() => {
     const dataArray = [];
 
@@ -198,6 +220,7 @@ const Dashboard: React.FC = () => {
     return dataArray;
   }, [yearSelected]);
 
+  // Filtra e formata os dados quando o mês, ano ou filtro de frequência mudam
   useEffect(() => {
     const filteredData = listData.filter((item) => {
       const date = new Date(item.date);
@@ -224,6 +247,7 @@ const Dashboard: React.FC = () => {
     setData(formattedData);
   }, [listData, monthSelected, yearSelected, frequencyFilter]);
 
+  // Calcula a relação entre despesas recorrentes e eventuais
   const relationExpensesRecurrentVersusEventual = useMemo(() => {
     let amountRecurrent = 0;
     let amountEventual = 0;
@@ -260,6 +284,7 @@ const Dashboard: React.FC = () => {
     ];
   }, [expenses, monthSelected, yearSelected]);
 
+  // Calcula a relação entre ganhos recorrentes e eventuais
   const relationGainsRecurrentVersusEventual = useMemo(() => {
     let amountRecurrent = 0;
     let amountEventual = 0;
@@ -296,20 +321,43 @@ const Dashboard: React.FC = () => {
     ];
   }, [gains, monthSelected, yearSelected]);
 
+  // Manipula o clique nos botões de filtro de frequência
   const handleFrequencyClick = (frequency: string | null) => {
     setFrequencyFilter(frequency);
   };
 
+  // Manipula a mudança do mês selecionado
   const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setMonthSelected(e.target.value);
     setFrequencyFilter(null);
   };
 
+  // Manipula a mudança do ano selecionado
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setYearSelected(e.target.value);
     setFrequencyFilter(null);
   };
 
+  // Valida os dados para garantir que não contenham valores NaN
+  const validateData = (
+    data: { name: string; amount: number; percent: number; color: string }[]
+  ) => {
+    return data.map((item) => ({
+      ...item,
+      amount: isNaN(item.amount) ? 0 : item.amount,
+      percent: isNaN(item.percent) ? 0 : item.percent,
+    }));
+  };
+
+  // Valida os dados de despesas e ganhos
+  const validatedExpenseData = validateData(
+    relationExpensesRecurrentVersusEventual
+  );
+  const validatedIncomeData = validateData(
+    relationGainsRecurrentVersusEventual
+  );
+
+  // Renderiza o componente do Dashboard
   return (
     <Container>
       <ContentHeader title="Dashboard" lineColor="#ffff">
@@ -357,7 +405,7 @@ const Dashboard: React.FC = () => {
           amount={totalBalance}
           footerLabel="atualizado com base nas entradas e saídas"
           icon="dollar"
-          color={totalBalance >= 0 ? "#2196f3" : "#f44336"} // Dinamizando a cor
+          color={totalBalance >= 0 ? "#2196f3" : "#f44336"}
         />
         <WalletBox
           title="Entradas"
@@ -400,16 +448,9 @@ const Dashboard: React.FC = () => {
           lineColorAmountOutput="#fa7922"
         />
       </ThirdLine>
-
       <FourthLine>
-        <BarChartBox
-          title="Saídas"
-          data={relationExpensesRecurrentVersusEventual}
-        />
-        <BarChartBox
-          title="Entradas"
-          data={relationGainsRecurrentVersusEventual}
-        />
+        <BarChartBox title="Saídas" data={validatedExpenseData} />
+        <BarChartBox title="Entradas" data={validatedIncomeData} />
       </FourthLine>
     </Container>
   );

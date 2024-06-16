@@ -11,35 +11,44 @@ import {
 } from "recharts";
 
 import formatCurrency from "../../utils/formatCurrency";
+
+// Definição da interface para as props do componente HistoryBox
 interface IHistoryBoxProps {
   data: {
-    month: string;
-    amountEntry: number;
-    amountOutput: number;
+    month: string; // Nome do mês
+    amountEntry: number; // Valor das entradas
+    amountOutput: number; // Valor das saídas
   }[];
-  lineColorAmountEntry: string;
-  lineColorAmountOutput: string;
+  lineColorAmountEntry: string; // Cor da linha para as entradas
+  lineColorAmountOutput: string; // Cor da linha para as saídas
 }
 
+// Componente funcional HistoryBox
 const HistoryBox: React.FC<IHistoryBoxProps> = ({
-  data,
-  lineColorAmountEntry,
-  lineColorAmountOutput,
+  data, // Dados a serem exibidos no gráfico
+  lineColorAmountEntry, // Cor da linha de entradas
+  lineColorAmountOutput, // Cor da linha de saídas
 }) => {
+  // Função para formatar o valor do tooltip
   const formatTooltipValue = (value: number) => {
-    return value.toFixed(2);
+    return value.toFixed(2); // Formata o valor com duas casas decimais
   };
 
+  // Renderização do componente
   return (
     <Container>
       <h2>Histórico de Saldo</h2>
       <ResponsiveContainer width="100%" height={160}>
         <LineChart data={data}>
+          {/* Eixo X exibindo os meses */}
           <XAxis dataKey="month" stroke="#cecece" />
+          {/* Tooltip para exibir os valores ao passar o mouse */}
           <Tooltip
             formatter={(value: number) => formatCurrency(Number(value))}
           />
+          {/* Grade do gráfico */}
           <CartesianGrid strokeDasharray="3 3" stroke="#cecece" />
+          {/* Linha para os valores de entrada */}
           <Line
             type="monotone"
             dataKey="amountEntry"
@@ -48,6 +57,7 @@ const HistoryBox: React.FC<IHistoryBoxProps> = ({
             strokeWidth={3}
             dot={{ r: 3 }}
           />
+          {/* Linha para os valores de saída */}
           <Line
             type="monotone"
             dataKey="amountOutput"
