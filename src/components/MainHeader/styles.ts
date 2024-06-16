@@ -1,37 +1,46 @@
-import styled from "styled-components";
+import styled from "styled-components"; // Importa a biblioteca styled-components para estilização
 
+// Estilização do contêiner principal do cabeçalho
 export const Container = styled.div`
-  grid-area: MH;
-  color: ${(props) => props.theme.colors.white};
+  grid-area: MH; // Define a área do grid para MainHeader
+  color: ${(props) =>
+    props.theme.colors.white}; // Define a cor do texto baseada no tema
 
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) =>
+    props.theme.colors.secondary}; // Define a cor de fundo baseada no tema
 
-  display: flex;
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray};
-  justify-content: space-between;
+  display: flex; // Define o layout flexível
+  border-bottom: 1px solid ${(props) => props.theme.colors.gray}; // Adiciona uma borda inferior
 
-  padding: 0 10px;
+  justify-content: space-between; // Espaça os itens dentro do contêiner igualmente
 
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray};
+  padding: 0 10px; // Adiciona preenchimento nas laterais
+
+  border-bottom: 1px solid ${(props) => props.theme.colors.gray}; // Adiciona novamente a borda inferior
 `;
 
+// Estilização do perfil do usuário
 export const Profile = styled.div`
-  grid-area: MH;
+  grid-area: MH; // Define a área do grid para MainHeader
 
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) =>
+    props.theme.colors.secondary}; // Define a cor de fundo baseada no tema
 
-  display: flex;
-  flex-direction: column; /* Alinhar itens na direção da coluna */
-  padding-right: 0 10px;
+  display: flex; // Define o layout flexível
+  flex-direction: column; /* Alinha itens na direção da coluna */
+  padding-right: 10px; // Adiciona preenchimento à direita
 `;
 
+// Estilização da mensagem de boas-vindas
 export const Welcome = styled.h3`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) =>
+    props.theme.colors.white}; // Define a cor do texto baseada no tema
 `;
 
+// Estilização do nome do usuário
 export const UserName = styled.span`
-  font-weight: 500;
-  margin-top: 0px; /* Adicionar espaço entre 'Welcome' e 'UserName' */
+  font-weight: 500; // Define a espessura da fonte
+  margin-top: 4px; // Adicionar espaço entre 'Welcome' e 'UserName'
 `;
 
 export {};

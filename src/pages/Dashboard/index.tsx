@@ -358,40 +358,48 @@ const Dashboard: React.FC = () => {
   );
 
   // Renderiza o componente do Dashboard
+  // Renderiza o componente do Dashboard
   return (
     <Container>
+      {/* Cabeçalho do conteúdo com o título "Dashboard" e uma linha de cor */}
       <ContentHeader title="Dashboard" lineColor="#ffff">
+        {/* Componente SelectInput para selecionar o mês */}
         <SelectInput
-          options={months}
-          onChange={handleMonthChange}
-          defaultValue={monthSelected}
+          options={months} // Opções de meses disponíveis
+          onChange={handleMonthChange} // Função chamada ao mudar o mês selecionado
+          defaultValue={monthSelected} // Valor padrão selecionado
         />
+        {/* Componente SelectInput para selecionar o ano */}
         <SelectInput
-          options={years}
-          onChange={handleYearChange}
-          defaultValue={yearSelected}
+          options={years} // Opções de anos disponíveis
+          onChange={handleYearChange} // Função chamada ao mudar o ano selecionado
+          defaultValue={yearSelected} // Valor padrão selecionado
         />
       </ContentHeader>
+
+      {/* Filtros para selecionar a frequência das transações */}
       <Filters>
+        {/* Botão para filtrar transações recorrentes */}
         <FilterButton
           className={`tag-filter-recurrent ${
             frequencyFilter === "recorrente" ? "tag-actived" : ""
-          }`}
+          }`} // Define a classe CSS baseada no filtro selecionado
           onClick={() =>
             handleFrequencyClick(
-              frequencyFilter !== "recorrente" ? "recorrente" : null
+              frequencyFilter !== "recorrente" ? "recorrente" : null // Alterna o filtro de recorrente
             )
           }
         >
           Recorrentes
         </FilterButton>
+        {/* Botão para filtrar transações eventuais */}
         <FilterButton
           className={`tag-filter-eventual ${
             frequencyFilter === "eventual" ? "tag-actived" : ""
-          }`}
+          }`} // Define a classe CSS baseada no filtro selecionado
           onClick={() =>
             handleFrequencyClick(
-              frequencyFilter !== "eventual" ? "eventual" : null
+              frequencyFilter !== "eventual" ? "eventual" : null // Alterna o filtro de eventual
             )
           }
         >
@@ -399,61 +407,77 @@ const Dashboard: React.FC = () => {
         </FilterButton>
       </Filters>
 
+      {/* Primeira linha de caixas de informações */}
       <FirstLine>
+        {/* Componente WalletBox para exibir o saldo total */}
         <WalletBox
-          title="Saldo"
-          amount={totalBalance}
-          footerLabel="atualizado com base nas entradas e saídas"
-          icon="dollar"
-          color={totalBalance >= 0 ? "#2196f3" : "#f44336"}
+          title="Saldo" // Título da caixa
+          amount={totalBalance} // Valor a ser exibido
+          footerLabel="atualizado com base nas entradas e saídas" // Texto do rodapé
+          icon="dollar" // Ícone exibido
+          color={totalBalance >= 0 ? "#2196f3" : "#f44336"} // Cor baseada no valor do saldo
         />
+        {/* Componente WalletBox para exibir as entradas totais */}
         <WalletBox
-          title="Entradas"
-          amount={totalGains}
-          footerLabel="atualizado com base nas entradas e saídas"
-          icon="arrowDown"
-          color="#4caf50"
+          title="Entradas" // Título da caixa
+          amount={totalGains} // Valor a ser exibido
+          footerLabel="atualizado com base nas entradas e saídas" // Texto do rodapé
+          icon="arrowDown" // Ícone exibido
+          color="#4caf50" // Cor fixa para entradas
         />
+        {/* Componente WalletBox para exibir as saídas totais */}
         <WalletBox
-          title="Saídas"
-          amount={totalExpenses}
-          footerLabel="atualizado com base nas entradas e saídas"
-          icon="arrowUp"
-          color="#fa7922"
+          title="Saídas" // Título da caixa
+          amount={totalExpenses} // Valor a ser exibido
+          footerLabel="atualizado com base nas entradas e saídas" // Texto do rodapé
+          icon="arrowUp" // Ícone exibido
+          color="#fa7922" // Cor fixa para saídas
         />
       </FirstLine>
 
+      {/* Segunda linha com uma mensagem e um gráfico de pizza */}
       <SecondLine>
+        {/* Componente MessageBox para exibir uma mensagem baseada no saldo */}
         <MessageBox
-          title={totalBalance >= 0 ? "Muito bem!" : "Atenção!"}
+          title={totalBalance >= 0 ? "Muito bem!" : "Atenção!"} // Título baseado no saldo
           description={
             totalBalance >= 0
-              ? "Sua carteira está positiva"
-              : "Sua carteira está negativa"
+              ? "Sua carteira está positiva" // Descrição positiva se o saldo for positivo
+              : "Sua carteira está negativa" // Descrição de atenção se o saldo for negativo
           }
           footerText={
             totalBalance >= 0
-              ? "Continue assim. Considere investir o seu saldo."
-              : "Cuidado com os gastos excessivos."
+              ? "Continue assim. Considere investir o seu saldo." // Texto de incentivo se o saldo for positivo
+              : "Cuidado com os gastos excessivos." // Texto de aviso se o saldo for negativo
           }
-          icon={totalBalance >= 0 ? happyImg : sadImg}
+          icon={totalBalance >= 0 ? happyImg : sadImg} // Ícone baseado no saldo
         />
-        <PieChartComponent data={relationExpensesVersusGains} />
+        {/* Componente PieChartComponent para exibir um gráfico de pizza */}
+        <PieChartComponent data={relationExpensesVersusGains} />{" "}
+        {/* Dados do gráfico de pizza */}
       </SecondLine>
 
+      {/* Terceira linha com um gráfico de histórico */}
       <ThirdLine style={{ marginTop: 20 }}>
+        {/* Componente HistoryBox para exibir o histórico de entradas e saídas */}
         <HistoryBox
-          data={historyData}
-          lineColorAmountEntry="#4caf50"
-          lineColorAmountOutput="#fa7922"
+          data={historyData} // Dados do histórico
+          lineColorAmountEntry="#4caf50" // Cor da linha de entradas
+          lineColorAmountOutput="#fa7922" // Cor da linha de saídas
         />
       </ThirdLine>
+
+      {/* Quarta linha com gráficos de barras */}
       <FourthLine>
-        <BarChartBox title="Saídas" data={validatedExpenseData} />
-        <BarChartBox title="Entradas" data={validatedIncomeData} />
+        {/* Componente BarChartBox para exibir o gráfico de barras de saídas */}
+        <BarChartBox title="Saídas" data={validatedExpenseData} />{" "}
+        {/* Dados validados de saídas */}
+        {/* Componente BarChartBox para exibir o gráfico de barras de entradas */}
+        <BarChartBox title="Entradas" data={validatedIncomeData} />{" "}
+        {/* Dados validados de entradas */}
       </FourthLine>
     </Container>
   );
 };
 
-export default Dashboard;
+export default Dashboard; // Exporta o componente Dashboard
