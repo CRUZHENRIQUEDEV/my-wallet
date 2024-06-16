@@ -3,7 +3,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Layout from "./components/Layout";
 import AppRoutes from "./routes/app.routes";
 import { ThemeProvider } from "styled-components";
-import { useTheme } from "./hooks/themes";
+import { useTheme } from "./hooks/theme";
 
 const App: React.FC = () => {
   const { theme } = useTheme();

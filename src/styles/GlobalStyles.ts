@@ -23,4 +23,9 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  body {
+    background-color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.white};
+  }
 `;

@@ -1,17 +1,30 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "./hooks/themes";
+import { ThemeProvider } from "./hooks/theme";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
+import { useTheme } from "./hooks/theme";
 
-const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container!);
-root.render(
-  <ThemeProvider>
-    <BrowserRouter>
+const Root: React.FC = () => {
+  const { theme } = useTheme();
+
+  return (
+    <StyledThemeProvider theme={theme}>
       <GlobalStyles />
       <App />
-    </BrowserRouter>
+    </StyledThemeProvider>
+  );
+};
+
+const container = document.getElementById("root");
+const root = createRoot(container!);
+
+root.render(
+  <ThemeProvider>
+    <Router>
+      <Root />
+    </Router>
   </ThemeProvider>
 );

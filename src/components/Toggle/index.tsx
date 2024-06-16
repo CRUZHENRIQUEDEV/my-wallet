@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, ToggleLabel, ToggleSelector } from "./styles";
+import { useTheme } from "../../hooks/theme";
 
 const Toggle: React.FC = () => {
-  const [checked, setChecked] = useState(false);
+  const { toggleTheme, theme } = useTheme();
 
-  const handleChange = (nextChecked: boolean) => {
-    setChecked(nextChecked);
-    console.log("mudou");
+  const handleChange = () => {
+    toggleTheme();
   };
 
   return (
     <Container>
       <ToggleLabel>Light</ToggleLabel>
       <ToggleSelector
-        checked={checked}
+        checked={theme.title === "dark"}
         onChange={handleChange}
         uncheckedIcon={false}
         checkedIcon={false}

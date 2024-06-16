@@ -1,4 +1,10 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
 import dark from "../styles/themes/dark";
 import light from "../styles/themes/light";
 
@@ -25,7 +31,14 @@ interface ITheme {
 const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
 
 const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<ITheme>(dark);
+  const [theme, setTheme] = useState<ITheme>(() => {
+    const storedTheme = localStorage.getItem("@my-wallet:theme");
+    return storedTheme ? JSON.parse(storedTheme) : dark;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("@my-wallet:theme", JSON.stringify(theme));
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme.title === "dark" ? light : dark);
@@ -38,12 +51,12 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-function useTheme(): IThemeContext {
+const useTheme = (): IThemeContext => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
-}
+};
 
 export { ThemeProvider, useTheme };
