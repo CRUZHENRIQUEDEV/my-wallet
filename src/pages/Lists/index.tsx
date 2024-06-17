@@ -1,15 +1,15 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid"; // Importa o gerador de UUID
-import { useParams } from "react-router-dom"; // Hook para obter parâmetros da URL
-import ContentHeader from "../../components/ContentHeader"; // Componente para o cabeçalho do conteúdo
-import SelectInput from "../../components/SelectInput"; // Componente para os campos de seleção
-import HistoryFinanceCard from "../../components/HistoryFinanceCard"; // Componente para exibir os cartões de transação
-import { Container, Content, Filters, FilterButton } from "./styles"; // Importa estilos personalizados
+import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router-dom";
+import ContentHeader from "../../components/ContentHeader";
+import SelectInput from "../../components/SelectInput";
+import HistoryFinanceCard from "../../components/HistoryFinanceCard";
+import { Container, Content, Filters, FilterButton } from "./styles";
 
-import expenses from "../../repositories/expenses"; // Importa dados de despesas
-import gains from "../../repositories/gains"; // Importa dados de ganhos
-import formatCurrency from "../../utils/formatCurrency"; // Importa função para formatar moeda
-import formatDate from "../../utils/formatDate"; // Importa função para formatar data
+import expensesData from "../../data/expenses.json";
+import gainsData from "../../data/gains.json";
+import formatCurrency from "../../utils/formatCurrency";
+import formatDate from "../../utils/formatDate";
 
 // Define a interface para os dados que serão exibidos
 interface IData {
@@ -21,17 +21,29 @@ interface IData {
   tagColor: string;
 }
 
+// Interface para os dados JSON
+interface ITransaction {
+  description: string;
+  amount: string;
+  type: string;
+  frequency: string;
+  date: string;
+}
+
 // Componente principal que exibe a lista de transações
 const List: React.FC = () => {
-  const { type } = useParams<{ type: string }>(); // Obtém o parâmetro "type" da URL
-  const [data, setData] = useState<IData[]>([]); // Estado para armazenar os dados filtrados e formatados
+  const { type } = useParams<{ type: string }>();
+  const [data, setData] = useState<IData[]>([]);
   const [monthSelected, setMonthSelected] = useState<string>(
-    String(new Date().getMonth() + 1).padStart(2, "0") // Define o mês atual como valor padrão, formatado com dois dígitos
+    String(new Date().getMonth() + 1).padStart(2, "0")
   );
   const [yearSelected, setYearSelected] = useState<string>(
-    String(new Date().getFullYear()) // Define o ano atual como valor padrão
+    String(new Date().getFullYear())
   );
-  const [frequencyFilter, setFrequencyFilter] = useState<string | null>(null); // Estado para armazenar o filtro de frequência
+  const [frequencyFilter, setFrequencyFilter] = useState<string | null>(null);
+
+  const [expenses, setExpenses] = useState<ITransaction[]>(expensesData);
+  const [gains, setGains] = useState<ITransaction[]>(gainsData);
 
   // Define o título e a cor da linha com base no tipo de transação (entradas ou saídas)
   const title = useMemo(() => {
@@ -49,7 +61,7 @@ const List: React.FC = () => {
   // Seleciona os dados (ganhos ou despesas) com base no tipo de transação
   const listData = useMemo(() => {
     return type === "entry-balance" ? gains : expenses;
-  }, [type]);
+  }, [type, gains, expenses]);
 
   // Define os meses disponíveis para seleção
   const months = useMemo(() => {
@@ -60,7 +72,7 @@ const List: React.FC = () => {
       { value: "04", label: "Abril" },
       { value: "05", label: "Maio" },
       { value: "06", label: "Junho" },
-      { value: "07", label: "Julho" },
+      { value: "07", label: "Julho}" },
       { value: "08", label: "Agosto" },
       { value: "09", label: "Setembro" },
       { value: "10", label: "Outubro" },
