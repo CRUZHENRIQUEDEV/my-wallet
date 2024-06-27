@@ -1,3 +1,4 @@
+// src/pages/List/index.tsx
 import React, { useMemo, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router-dom";
@@ -6,8 +7,8 @@ import SelectInput from "../../components/SelectInput";
 import HistoryFinanceCard from "../../components/HistoryFinanceCard";
 import { Container, Content, Filters, FilterButton } from "./styles";
 
-import expensesData from "../../data/expenses.json";
-import gainsData from "../../data/gains.json";
+import expenses from "../../../src/data/expenses.json";
+import gains from "../../../src/data/gains.json";
 import formatCurrency from "../../utils/formatCurrency";
 import formatDate from "../../utils/formatDate";
 
@@ -19,15 +20,6 @@ interface IData {
   frequency: string;
   dateFormatted: string;
   tagColor: string;
-}
-
-// Interface para os dados JSON
-interface ITransaction {
-  description: string;
-  amount: string;
-  type: string;
-  frequency: string;
-  date: string;
 }
 
 // Componente principal que exibe a lista de transações
@@ -42,10 +34,6 @@ const List: React.FC = () => {
   );
   const [frequencyFilter, setFrequencyFilter] = useState<string | null>(null);
 
-  const [expenses, setExpenses] = useState<ITransaction[]>(expensesData);
-  const [gains, setGains] = useState<ITransaction[]>(gainsData);
-
-  // Define o título e a cor da linha com base no tipo de transação (entradas ou saídas)
   const title = useMemo(() => {
     return type === "entry-balance"
       ? {
@@ -58,12 +46,10 @@ const List: React.FC = () => {
         };
   }, [type]);
 
-  // Seleciona os dados (ganhos ou despesas) com base no tipo de transação
   const listData = useMemo(() => {
     return type === "entry-balance" ? gains : expenses;
-  }, [type, gains, expenses]);
+  }, [type]);
 
-  // Define os meses disponíveis para seleção
   const months = useMemo(() => {
     return [
       { value: "01", label: "Janeiro" },
@@ -72,7 +58,7 @@ const List: React.FC = () => {
       { value: "04", label: "Abril" },
       { value: "05", label: "Maio" },
       { value: "06", label: "Junho" },
-      { value: "07", label: "Julho}" },
+      { value: "07", label: "Julho" },
       { value: "08", label: "Agosto" },
       { value: "09", label: "Setembro" },
       { value: "10", label: "Outubro" },
@@ -81,7 +67,6 @@ const List: React.FC = () => {
     ];
   }, []);
 
-  // Cria uma lista de anos únicos com base nos dados disponíveis
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
 
@@ -102,7 +87,6 @@ const List: React.FC = () => {
     });
   }, [listData]);
 
-  // Filtra e formata os dados sempre que os seletores de mês, ano ou filtro de frequência mudam
   useEffect(() => {
     const filteredData = listData.filter((item) => {
       const date = new Date(item.date);
@@ -117,30 +101,27 @@ const List: React.FC = () => {
 
     const formattedData = filteredData.map((item) => {
       return {
-        id: uuidv4(), // Gera um UUID para cada item
+        id: uuidv4(),
         description: item.description,
-        amountFormatted: formatCurrency(Number(item.amount)), // Formata o valor como moeda
+        amountFormatted: formatCurrency(Number(item.amount)),
         frequency: item.frequency,
-        dateFormatted: formatDate(item.date), // Formata a data
-        tagColor: item.frequency === "recorrente" ? "#df9f4b" : "#4E41F0", // Define a cor da tag com base na frequência
+        dateFormatted: formatDate(item.date),
+        tagColor: item.frequency === "recorrente" ? "#df9f4b" : "#4E41F0",
       };
     });
 
-    setData(formattedData); // Atualiza o estado com os dados formatados
+    setData(formattedData);
   }, [listData, monthSelected, yearSelected, frequencyFilter]);
 
-  // Atualiza o filtro de frequência
   const handleFrequencyClick = (frequency: string | null) => {
     setFrequencyFilter(frequency);
   };
 
-  // Atualiza o mês selecionado e redefine o filtro de frequência
   const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setMonthSelected(e.target.value);
     setFrequencyFilter(null);
   };
 
-  // Atualiza o ano selecionado e redefine o filtro de frequência
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setYearSelected(e.target.value);
     setFrequencyFilter(null);

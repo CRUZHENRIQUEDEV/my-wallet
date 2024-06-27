@@ -367,7 +367,7 @@ const Dashboard: React.FC = () => {
   const validatedIncomeData = validateData(
     relationGainsRecurrentVersusEventual
   );
-
+  
   // Renderiza o componente do Dashboard
   return (
     <Container>

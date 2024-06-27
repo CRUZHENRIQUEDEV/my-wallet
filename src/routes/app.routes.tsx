@@ -1,18 +1,40 @@
-import React from "react"; // Importa o React
-import { Routes, Route } from "react-router-dom"; // Importa os componentes de rotas do react-router-dom
-import Dashboard from "../pages/Dashboard"; // Importa o componente Dashboard (ajuste o caminho conforme necessário)
-import List from "../pages/Lists"; // Importa o componente List (ajuste o caminho conforme necessário)
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-// Define o componente de rotas da aplicação
+import Layout from "../components/Layout";
+import Dashboard from "../pages/Dashboard";
+import List from "../pages/Lists";
+import SignIn from "../pages/SignIn";
+import MoneyExchange from "../pages/MoneyExchange";
+
 const AppRoutes: React.FC = () => (
   <Routes>
-    {" "}
-    {/* Componente que encapsula todas as rotas da aplicação */}
-    <Route path="/dashboard" element={<Dashboard />} />{" "}
-    {/* Define a rota para o Dashboard */}
-    <Route path="/list/:type" element={<List />} />{" "}
-    {/* Define a rota para a lista, que aceita um parâmetro de URL */}
+    <Route path="/" element={<SignIn />} />
+    <Route
+      path="/dashboard"
+      element={
+        <Layout>
+          <Dashboard />
+        </Layout>
+      }
+    />
+    <Route
+      path="/list/:type"
+      element={
+        <Layout>
+          <List />
+        </Layout>
+      }
+    />
+    <Route
+      path="/money-exchange"
+      element={
+        <Layout>
+          <MoneyExchange />
+        </Layout>
+      }
+    />
   </Routes>
 );
 
-export default AppRoutes; // Exporta o componente de rotas para uso em outros lugares
+export default AppRoutes;
